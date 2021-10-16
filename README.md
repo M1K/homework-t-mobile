@@ -64,6 +64,12 @@ newline characters;
 - store the output in a sql database
 
 
-# Start
-Open homework-t-mobile/target directory
+#### Start application
+Download project and open its directory (homework-t-mobile) and build from command line:
+```
+mvn clean install
+```
+Open target directory (homework-t-mobile/target) and run jar file
+```
 java -jar homework-t-mobile-1.0-SNAPSHOT.jar "/home/michal/DATA/Local/homework-t-mobile/src/main/resources/example_input.txt"
+```
