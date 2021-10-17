@@ -9,10 +9,13 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lombok.SneakyThrows;
 
 class Solution {
+
+    private static final Pattern SPLIT_PATTERN = Pattern.compile(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
     public String solution(String location) {
         List<Transaction> transactions = readTransactions(location);
@@ -28,7 +31,7 @@ class Solution {
         try (BufferedReader reader = new BufferedReader(new FileReader(location))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String[] values = SPLIT_PATTERN.split(line);
 
                 Transaction transaction = new Transaction();
                 transaction.setCompany(values[1].split("/")[0].trim());
