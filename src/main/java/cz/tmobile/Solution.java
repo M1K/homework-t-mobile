@@ -14,31 +14,34 @@ import lombok.SneakyThrows;
 
 class Solution {
 
-    @SneakyThrows
     public String solution(String location) {
+        List<Transaction> transactions = readTransactions(location);
+        Map<String, Integer> numberMap = addNumbers(transactions);
+        List<String> lines = formatTransactions(transactions, numberMap);
+        return String.join("\n", lines);
+    }
+
+    @SneakyThrows
+    List<Transaction> readTransactions(String location) {
         List<Transaction> transactions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(location))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                transactions.add(createTransaction(values));
+
+                Transaction transaction = new Transaction();
+                transaction.setCompany(values[1].split("/")[0].trim());
+                transaction.setFrequency(values[0].replaceAll("\"", "").trim());
+                transaction.setDateTime(LocalDateTime.parse(values[2]
+                        .replaceAll("\\s+", " ")
+                        .trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+                transactions.add(transaction);
             }
         }
 
-        Map<String, Integer> numberMap = addNumbers(transactions);
-        List<String> lines = formatTransactions(transactions, numberMap);
-        return String.join("\n", lines);
-    }
-
-    Transaction createTransaction(String[] values) {
-        Transaction transaction = new Transaction();
-        transaction.setCompany(values[1].split("/")[0].trim());
-        transaction.setFrequency(values[0].replaceAll("\"", "").trim());
-        transaction.setDateTime(LocalDateTime.parse(values[2]
-                .replaceAll("\\s+", " ")
-                .trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        return transaction;
+        return transactions;
     }
 
     Map<String, Integer> addNumbers(List<Transaction> transactions) {

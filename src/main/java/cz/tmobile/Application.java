@@ -1,6 +1,6 @@
 package cz.tmobile;
 
-public class Main {
+public class Application {
 
     public static void main(String[] args) {
         if (args == null || args.length == 0) {

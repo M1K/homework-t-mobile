@@ -37,7 +37,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>cz.tmobile.Main</mainClass>
+              <mainClass>cz.tmobile.Application</mainClass>
             </manifest>
           </archive>
         </configuration>

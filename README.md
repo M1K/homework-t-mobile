@@ -1,3 +1,17 @@
+# Start application
+Download project and open its directory (homework-t-mobile) and build from command line:
+```
+mvn clean install
+```
+Open target directory (homework-t-mobile/target) and run jar file
+```
+java -jar homework-t-mobile-1.0-SNAPSHOT.jar filepath
+```
+For example:
+```
+java -jar homework-t-mobile-1.0-SNAPSHOT.jar "/home/michal/DATA/Local/homework-t-mobile/src/main/resources/example_input.txt"
+```
+
 # Test for developers
 Let's have a file with transactions. 
 The file consists of name of the transaction, name of the partner and telephone number of the client and time when the ransaction was paid. 
@@ -62,14 +76,3 @@ newline characters;
 - create a web page that will represent the list from file S in the UI
 - there can be multiple input files
 - store the output in a sql database
-
-
-#### Start application
-Download project and open its directory (homework-t-mobile) and build from command line:
-```
-mvn clean install
-```
-Open target directory (homework-t-mobile/target) and run jar file
-```
-java -jar homework-t-mobile-1.0-SNAPSHOT.jar "/home/michal/DATA/Local/homework-t-mobile/src/main/resources/example_input.txt"
-```
